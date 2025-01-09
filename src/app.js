@@ -24,7 +24,7 @@ app.engine(
     })
 );
 
-const viewPath = path.join(__dirname, "views");
+const viewPath = path.join(__dirname, "../views");
 app.set("views", viewPath);
 app.set("view engine", ".hbs");
 
