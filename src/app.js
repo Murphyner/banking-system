@@ -13,7 +13,6 @@ const app = express()
 app.use(cors())
 app.use(express.json())
 
-app.use("/api" , router)
 
 app.use("/docs" , swaggerUI.serve , swaggerUI.setup(swagger))
 
@@ -24,14 +23,18 @@ app.engine(
         extname: ".hbs",
     })
 );
+
+const viewPath = path.join(__dirname, "views");
+app.set("views", viewPath);
 app.set("view engine", ".hbs");
 
-const viewPath = path.join(__dirname, "./views");
-app.set("views", viewPath);
 
 app.get('/', (req, res) => {
     res.render('home' , req.query);
 });
+
+app.use("/api", router)
+
 
 const publicPath = path.join(__dirname, "../public")
 app.use("/", express.static(publicPath))

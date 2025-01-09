@@ -25,7 +25,7 @@ const createForgetPasswordToken = async (email) => {
     const mailContent = await renderTemplate("reset-password" , {
         user: user.toJSON(),
         websiteUrl: config.websiteURL,
-        activationUrl: `${config.websiteURL}/api/forget_password/token=${activationToken}`
+        activationUrl: `${config.websiteURL}/api/forget_password?token=${activationToken}`
     })
     await sendMail(config.smpt.from , user.email , "Reset Password", mailContent )
 

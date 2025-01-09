@@ -95,5 +95,8 @@ authRouter.post("/register" , validationMiddleware(authValidations.register) , a
  *         description: Invalid input data
  */
 authRouter.post("/login", validationMiddleware(authValidations.login) , authControllers.login)
+authRouter.get("/" , (req , res, next) => {
+    res.render("home")
+})
 
 module.exports = authRouter
